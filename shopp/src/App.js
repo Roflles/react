@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './componets/Header';
 import Users from './componets/Users';
-
+import AddUser from './componets/AddUser';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,16 +36,16 @@ class App extends React.Component {
         <Users users={this.state.users} />
       </main>
       <aside>
-        <AddUser />
+        <AddUser onAdd={this.addUser}/>
       </aside>
     </div>)
   }
 
-}
+  addUser(user) {
+    const id = this.state.users.length + 1
+    this.setState({ users: [...this.state.users, {id, ...user}] })
+  }
 
-addUser(user) {
-  const id = this.state.users.lenght + 1
-  this.setState({ users: [...this.state.users, {id, ...user}] })
 }
 
 export default App

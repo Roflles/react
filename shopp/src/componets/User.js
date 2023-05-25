@@ -10,7 +10,8 @@ class User extends React.Component {
                 <AiFillRest className='delete-icons'/>
                 <AiFillTool className='edit-icons'/>
                 <h3>{this.user.firstname} {this.user.lastname}</h3>
-                <p>{this.user.bio}</p>
+                <p>{this.user.bio} </p>
+                <p>Вік: {this.user.age}</p>
                 <b>{this.user.isHappy ? 'Щясливий :)' : 'Недуже :('}</b>    
             </div>
         )   
