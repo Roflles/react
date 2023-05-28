@@ -1,13 +1,14 @@
 import React from 'react';
 
 class AddUser extends React.Component {
+    userAdd = {}
     constructor(props) {
         super(props)
         this.state = {
             firstname: '',
             lastname: '',
             bio: '',
-            age: '1',
+            age: '',
             isHappy: false
         }
     }
@@ -22,14 +23,17 @@ class AddUser extends React.Component {
                 <label htmlFor='isHappy' >Щясливий?</label>
                 <input type='checkbox' id='isHappy' onChange={(e) => this.setState({ isHappy: e.target.checked })}/>
                 <button type='button' onClick={() => {
-                    this.myForm.reset
-                    this.props.onAdd({
+                    this.myForm.reset()
+                    this.userAdd = {
                         firstname: this.state.firstname,
                         lastname: this.state.lastname,
                         age: this.state.age,
                         bio: this.state.bio,
                         isHappy: this.state.isHappy,
-                        })
+                    }
+                    if(this.props.user)
+                        this.userAdd.id = this.props.user.id
+                    this.props.onAdd(this.userAdd)
                 }
                 }>Додати</button>
             </form>
