@@ -27,18 +27,35 @@ class App extends React.Component {
       ]
     }
     this.addUser = this.addUser.bind(this)
+    this.deleteUser = this.deleteUser.bind(this)
+    this.editUser = this.editUser.bind(thise)
   }
   
   render() {
     return (<div>
       <Header title="Список користувачів" />
       <main>
-        <Users users={this.state.users} />
+        <Users users={this.state.users} onDelete={this.deleteUser} onEdit={this.editUser}/>
       </main>
       <aside>
         <AddUser onAdd={this.addUser}/>
       </aside>
     </div>)
+  }
+
+  deleteUser(id) {
+    this.setState({
+      users: this.state.users.filter((el) => el.id !== id)
+    })
+  }
+
+  editUser(user) {
+    let allUsers = this.state.users
+    allUsers[user.id - 1] = user
+
+    this.setState({ users: [] }, () => {
+      this.setState({ users: [...allUsers] })
+    })
   }
 
   addUser(user) {
