@@ -28,7 +28,7 @@ class App extends React.Component {
     }
     this.addUser = this.addUser.bind(this)
     this.deleteUser = this.deleteUser.bind(this)
-    this.editUser = this.editUser.bind(thise)
+    this.editUser = this.editUser.bind(this)
   }
   
   render() {
