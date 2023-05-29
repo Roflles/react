@@ -5,9 +5,9 @@ class AddUser extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            firstname: '',
-            lastname: '',
-            bio: '',
+            first_name: '',
+            last_name: '',
+            email: '',
             age: '',
             isHappy: false
         }
@@ -16,19 +16,19 @@ class AddUser extends React.Component {
     render() {
         return (
             <form ref={(el) => this.myForm = el}>
-                <input placeholder='Імя' onChange={(e) => this.setState({ firstname: e.target.value })}/>
-                <input placeholder='Прізвище' onChange={(e) => this.setState({ lastname: e.target.value })}/>
+                <input placeholder='Імя' onChange={(e) => this.setState({ first_name: e.target.value })}/>
+                <input placeholder='Прізвище' onChange={(e) => this.setState({ last_name: e.target.value })}/>
                 <input placeholder='Вік' onChange={(e) => this.setState({ age: e.target.value })}/>
-                <textarea placeholder='Біографія' onChange={(e) => this.setState({ bio: e.target.value })}></textarea>
+                <textarea placeholder='email' onChange={(e) => this.setState({ email: e.target.value })}></textarea>
                 <label htmlFor='isHappy' >Щясливий?</label>
                 <input type='checkbox' id='isHappy' onChange={(e) => this.setState({ isHappy: e.target.checked })}/>
                 <button type='button' onClick={() => {
                     this.myForm.reset()
                     this.userAdd = {
-                        firstname: this.state.firstname,
-                        lastname: this.state.lastname,
+                        first_name: this.state.first_name,
+                        last_name: this.state.last_name,
                         age: this.state.age,
-                        bio: this.state.bio,
+                        email: this.state.email,
                         isHappy: this.state.isHappy,
                     }
                     if(this.props.user)
