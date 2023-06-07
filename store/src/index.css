@@ -38,6 +38,26 @@ header ul.nav li:hover {
     opacity: 0.5;
 }
 
+header .shop-cart-botton {
+    float: right;
+    cursor: pointer;
+    transition: color 500ms ease;
+}
+
+header .shop-cart-botton:hover,
+header .shop-cart-botton:active {
+    color: #dc3d3d;
+}
+
+header .shop-cart {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 450px;
+    min-height: 100px;
+    background: #fff;
+}
+
 header .presentation {
     margin: 50px 0;
     background: url('./img/fon.jpg') no-repeat;
