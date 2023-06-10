@@ -14,11 +14,14 @@ const Header = () => {
               <li>Контакти</li>
               <li>Кабінет</li>
             </ul>
-            <FaShoppingBasket onClick={() => setCartOpen(cartOpen = !cartOpen)} className={`shop-cart-botton ${cartOpen && 'active'}`} />
+            <FaShoppingBasket onClick={() => setCartOpen(cartOpen = !cartOpen)} className={`shop-cart-button ${cartOpen && 'active'}`} />
 
-            <div className='shop-cart'>
+            {cartOpen && (
+              <div className='shop-cart'>
 
             </div>
+            )}
+            
         </div>
         <div className='presentation'></div>
     </header>
