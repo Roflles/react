@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from './componets/Footer';
 import Header from './componets/Header'
 import Items from './componets/Items';
+import Categories from './componets/Categories';
 
 
 class  App extends React.Component {
@@ -9,6 +10,7 @@ class  App extends React.Component {
     super(props)
     this.state = {
       orders: [],
+      currentItems: [],
       items: [
         {
           id: 1,
@@ -39,24 +41,38 @@ class  App extends React.Component {
           title: 'Лампа',
           img: '33665363245784512456.jpg',
           desc: 'Loren ipsum dolor sit amet, consectetur adipisicing.',
-          category: 'Light',
+          category: 'light',
           price: '25.00'
         }
 
       ]
     }
+    this.state.currentItems = this.state.items
     this.addToOrder = this.addToOrder.bind(this) //підключення метода
     this.deleteOrder = this.deleteOrder.bind(this)
+    this.chooseCategory = this.chooseCategory.bind(this)
   }
   
   render() {
     return (
       <div className='wrapper'>
         <Header orders={this.state.orders} onDelete={this.deleteOrder} />
-        <Items items={this.state.items} onAdd={this.addToOrder} />
+        <Categories chooseCategory={this.chooseCategory}/>
+        <Items items={this.state.currentItems} onAdd={this.addToOrder} />
         <Footer onClick={() => this.props.onDelete(this.props.icon.id)}/>
       </div>
     );
+  }
+
+  chooseCategory(category) {
+    if (category === 'all') {
+      this.setState({ currentItems: this.state.items})
+      return
+    } 
+
+    this.setState({
+      currentItems: this.state.items.filter(el => el.category === category )
+    })
   }
 
   deleteOrder(id)  {
