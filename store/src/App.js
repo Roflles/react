@@ -3,6 +3,7 @@ import Footer from './componets/Footer';
 import Header from './componets/Header'
 import Items from './componets/Items';
 import Categories from './componets/Categories';
+import ShowFullItem from './componets/ShowFullItem';
 
 
 class  App extends React.Component {
@@ -45,7 +46,8 @@ class  App extends React.Component {
           price: '25.00'
         }
 
-      ]
+      ],
+      showFullItem: false
     }
     this.state.currentItems = this.state.items
     this.addToOrder = this.addToOrder.bind(this) //підключення метода
@@ -58,10 +60,16 @@ class  App extends React.Component {
       <div className='wrapper'>
         <Header orders={this.state.orders} onDelete={this.deleteOrder} />
         <Categories chooseCategory={this.chooseCategory}/>
-        <Items items={this.state.currentItems} onAdd={this.addToOrder} />
+        <Items onShowItem={onShowItem} items={this.state.currentItems} onAdd={this.addToOrder} />
+
+        {this.state.showFullItem && <ShowFullItem />}
         <Footer onClick={() => this.props.onDelete(this.props.icon.id)}/>
       </div>
     );
+  }
+
+  onShowItem() {
+    this.setState({showFullItem: !this.state.showFullItem})
   }
 
   chooseCategory(category) {
