@@ -47,12 +47,14 @@ class  App extends React.Component {
         }
 
       ],
-      showFullItem: false
+      showFullItem: false,
+      fullItem: {}
     }
     this.state.currentItems = this.state.items
     this.addToOrder = this.addToOrder.bind(this) //підключення метода
     this.deleteOrder = this.deleteOrder.bind(this)
     this.chooseCategory = this.chooseCategory.bind(this)
+    this.onShowItem = this.onShowItem.bind(this)
   }
   
   render() {
@@ -60,15 +62,16 @@ class  App extends React.Component {
       <div className='wrapper'>
         <Header orders={this.state.orders} onDelete={this.deleteOrder} />
         <Categories chooseCategory={this.chooseCategory}/>
-        <Items onShowItem={onShowItem} items={this.state.currentItems} onAdd={this.addToOrder} />
+        <Items onShowItem={this.onShowItem} items={this.state.currentItems} onAdd={this.addToOrder} />
 
-        {this.state.showFullItem && <ShowFullItem />}
+        {this.state.showFullItem && <ShowFullItem onShowItem={this.onShowItem} onAdd={this.addToOrder} item={this.state.fullItem}/>}
         <Footer onClick={() => this.props.onDelete(this.props.icon.id)}/>
       </div>
     );
   }
 
-  onShowItem() {
+  onShowItem(item) {
+    this.setState({fullItem: item})
     this.setState({showFullItem: !this.state.showFullItem})
   }
 
